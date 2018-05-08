@@ -5,62 +5,37 @@ from tkinter import filedialog as fd
 class Application:
     def __init__(self):
         self.window = tk.Tk()
-        self.window.geometry("500x500")
+        self.window.geometry("500x100")
         self.window.title("Xor File")
+        self.path_in=""
+        self.path_out=""
+        self.key=int()
 
-        self.menu = tk.Menu(self.window)
-
-        submenu = tk.Menu(self.menu, tearoff=0)
-        self.menu.add_cascade(label="Plik", menu=submenu)
-
-        submenu.add_command(label="Otwórz", command=self.open_file)
-        submenu.add_command(label="Zapisz", command=self.save_file)
-
-        self.window.config(menu=self.menu, width=50, height=30)
+        selectF = tk.Button(self.window, text="Selec File to read", width=20, command=lambda :self.open_file())
+        selectO = tk.Button(self.window, text="Selec File to write", width=20, command=lambda :self.save_file())
+        self.name = tk.Entry(self.window, width=40)
+        run = tk.Button(self.window, text="Run endcose/decode XOR", width=20, command=lambda :self.run_xor())
+        selectF.pack()
+        selectO.pack()
+        self.name.pack()
+        run.pack()
 
         self.window.mainloop()
 
     def open_file(self):
-        filename = fd.askopenfilename(filetypes=[("File", "*")])  # wywołanie okna dialogowego open file
-        print(filename)
+        self.path_in = fd.askopenfilename(filetypes=[("File", "*")])  # wywołanie okna dialogowego open file
+        print(self.path_in)
+
+
+    def save_file(self):
+        self.path_out = fd.asksaveasfilename(filetypes=[("Plik tekstowy", "*")],defaultextension="*.txt")  # wywołanie okna dialogowego save file
+        print(self.path_out)
+
+    def run_xor(self):
         try:
-            main_logic.main_Logic(filename, "ola.txt", 5)
+            self.key = int(self.name.get())
+            main_logic.main_Logic(self.path_in, self.path_out, self.key)
         except:
             print("Zdupilo sie")
 
-    def save_file(self):
-        filename = fd.asksaveasfilename(filetypes=[("Plik tekstowy", "*")],
-                                        defaultextension="*.txt")  # wywołanie okna dialogowego save file
-
-        if filename:
-            with open(filename, "w", -1, "utf-8") as file:
-                file.write(self.text.get(1.0, tk.END))
-
-
 apl = Application()
-
-import tkinter as tk  # ładowanie modułu tkinter (w wersji 3+)
-
-window = tk.Tk()  # tworzenie okna głównego
-window.title("Hello World")  # ustawienie tytułu okna głównego
-# tworzenie kontrolki typu label
-text = tk.StringVar()
-label = tk.Label(window, textvariable=text, padx=100, pady=20)
-label.pack()  # podpinanie kontrolki pod okno
-text.set(
-    "Witaj Świecie programowania\nCo swym urokiem nas zabawia\nCo otwiera nowe możliwości\nZ binarnych liczb złożoności")
-description = tk.Label(window, text="Podaj proszę swoje imie:").pack()
-name = tk.Entry(window, width=40)
-name.pack()
-
-
-def HelloWorld():
-    text.set(
-        "Witaj {0} w świecie programowania\nCo swym urokiem nas zabawia\nCo otwiera nowe możliwości\nZ binarnych liczb złożoności".format(
-            name.get()))
-
-
-ok = tk.Button(window, text="OK", width=20, command=HelloWorld)
-ok.pack()
-
-tk.mainloop()  # wywołanie pętli komunikatów
