@@ -1,0 +1,2 @@
+class ErrorXorFile(Exception):
+    pass
