@@ -26,6 +26,7 @@ def name_file_C(out):
     return out
 
 def main_Logic(inF,outF,K):
+    #outF="ou.txt"
     in_file = inF
     out_file = outF
     key = number_to_char_key(K)
