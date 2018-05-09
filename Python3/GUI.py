@@ -1,11 +1,15 @@
+import error_xor_key
+import error_xor_file
 import tkinter as tk
 import main_logic
 from tkinter import filedialog as fd
 from tkinter import messagebox
+
+
 class Application:
     def __init__(self):
         self.window = tk.Tk()
-        self.window.geometry("500x100")
+        self.window.geometry("300x100")
         self.window.title("Xor File Encode/Decode")
         self.path_in=""
         self.path_out=""
@@ -36,8 +40,16 @@ class Application:
             self.key = int(self.name.get())
             self.duration=main_logic.main_Logic(self.path_in, self.path_out, self.key)
             messagebox.showinfo("XOR successful","Operation XOR in this file is successful \n Time XOR in Dll: {0} \n Time XOR in Python: {1}".format(self.duration.endC-self.duration.startC,self.duration.endP-self.duration.startP))
+
+        except error_xor_file.ErrorXorFile:
+            messagebox.showinfo("Error", "ERROR FILE")
+
+        except error_xor_key.error_xor_key:
+            messagebox.showinfo("Error", "ERROR KEY\n Key must be 0 to 255")
+
+        except ValueError:
+            messagebox.showinfo("Error", "ERROR KEY\n Key must be 0 to 255")
         except:
-            messagebox.showinfo("Error","ERROR")
-            print("Zdupilo sie")
+            messagebox.showinfo("Error","ERROR OTHER")
 
 apl = Application()
