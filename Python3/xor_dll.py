@@ -1,7 +1,8 @@
-from ctypes import CDLL, c_char, POINTER, c_bool, cast, byref
+from ctypes import CDLL, c_char, POINTER, c_bool, cast, byref,c_char_p
 
 lib = CDLL('xor_file')
-lib.xor_crypt_encrypt.argtypes = (POINTER(c_char), POINTER(c_char), POINTER(c_char))
+#lib.xor_crypt_encrypt.argtypes = (POINTER(c_char), POINTER(c_char), POINTER(c_char))
+lib.xor_crypt_encrypt.argtypes = (c_char_p, c_char_p, c_char_p)
 
 lib.xor_crypt_encrypt.restype = c_bool
 
@@ -10,6 +11,8 @@ def xor_extern_dll(nazwa1, nazwa2, klucz):
     l1 = len(nazwa1)
     l2 = len(nazwa2)
     l3 = len(klucz)
+
+    print(nazwa1," ",nazwa2," ",klucz)
 
     l1_c = cast((c_char * l1)(), POINTER(c_char))
     l2_c = cast((c_char * l2)(), POINTER(c_char))

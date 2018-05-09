@@ -11,4 +11,3 @@ def xor_python(in_file,out_file,key):
     except:
         return False
     return True
-

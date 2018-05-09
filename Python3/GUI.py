@@ -13,7 +13,7 @@ class Application:
         self.window.title("Xor File Encode/Decode")
         self.path_in=""
         self.path_out=""
-        self.key=int()
+        self.key=0
         self.duration=0
         selectF = tk.Button(self.window, text="Selec File to read", width=20, command=lambda :self.open_file())
         selectO = tk.Button(self.window, text="Selec File to write", width=20, command=lambda :self.save_file())
@@ -28,12 +28,12 @@ class Application:
 
     def open_file(self):
         self.path_in = fd.askopenfilename(filetypes=[("File", "*")])
-        print(self.path_in)
+        #print(self.path_in)
 
 
     def save_file(self):
         self.path_out = fd.asksaveasfilename(filetypes=[("File", "*")],defaultextension="*")
-        print(self.path_out)
+        #print(self.path_out)
 
     def run_xor(self):
         try:
@@ -51,7 +51,11 @@ class Application:
             messagebox.showinfo("Error", "ERROR KEY\nKey must be 0 to 255")
 
 
-        except:
+        except :
             messagebox.showinfo("Error","ERROR OTHER")
+        finally:
+            self.path_in = ""
+            self.path_out = ""
+            self.key = 0
 
 apl = Application()

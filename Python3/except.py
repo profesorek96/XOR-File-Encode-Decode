@@ -1,2 +1,0 @@
-class errorFileXor(exception):
-    pass
