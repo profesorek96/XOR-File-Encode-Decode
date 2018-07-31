@@ -16,7 +16,7 @@
 
 ## Technologies
 * __C++__
-* __Python3__
+* __Python 3__
 
 ## Setup
 
