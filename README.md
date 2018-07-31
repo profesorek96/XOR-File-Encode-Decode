@@ -11,7 +11,9 @@
 
 
 ## Screenshots
+![Example screenshot 1](https://github.com/profesorek96/XOR-File-Encode-Decode/blob/master/screenshot/screenshot-1.jpg)
 
+![Example screenshot 1](https://github.com/profesorek96/XOR-File-Encode-Decode/blob/master/screenshot/screenshot-2.jpg)
 
 
 ## Technologies
