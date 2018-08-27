@@ -21,7 +21,12 @@
 * __Python 3__
 
 ## Setup
-
+1. Pull repository
+2. Open file ./XOR_dll/xor_file.sln in Visual Studio 2017
+3. Compile this project to 64 bit relase
+4. Copy compile dll to ./Python3
+5. Run ./Python3/GUI.py
+6. Finished. Use this program :)
 
 ## Status
 Project is: _finished_
